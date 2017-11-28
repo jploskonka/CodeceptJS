@@ -442,7 +442,6 @@ describe('WebDriverIO', function () {
       it('should return error if iframe selector is invalid', () => {
           return wd.amOnPage('/iframe')
             .then(() => wd.switchTo('#invalidIframeSelector'))
-            .then(expectError)
             .catch((e) => {
                 e.should.be.instanceOf(Error);
                 e.message.should.be.equal('Element #invalidIframeSelector was not found by text|CSS|XPath');
@@ -452,7 +451,6 @@ describe('WebDriverIO', function () {
     it('should return error if iframe selector is not iframe', () => {
       return wd.amOnPage('/iframe')
         .then(() => wd.switchTo('h1'))
-        .then(expectError)
         .catch((e) => {
           e.should.be.instanceOf(Error);
           e.seleniumStack.type.should.be.equal('NoSuchFrame');
